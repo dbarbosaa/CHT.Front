@@ -2,8 +2,8 @@
 body, html {
   height: 100%;
   margin: 0;
-  font-family: Arial, sans-serif; /* Fonte genérica para melhor compatibilidade */
-  background-color: #f0f2f5; /* Cor de fundo leve, típica de interfaces de rede social */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna */
+  background-color: #cfe8ff; /* Cor de fundo azul claro */
 }
 
 /* Estilo para o container do login */
@@ -16,7 +16,6 @@ body, html {
 
 /* Estilos para o container do chat */
 .chat-container {
-  /*background-color: red;*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,11 +27,12 @@ body, html {
   width: 400px;
   max-width: 100%;
   height: 500px; /* Altura fixa para o chat */
-  background-color: #fff; /* Cor de fundo do card do chat */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra leve */
+  background-color: #a6c8ff; /* Cor de fundo do card do chat, azul mais escuro */
+  border-radius: 15px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* Esconde transbordamento */
 }
 
 /* Estilos para as mensagens no chat */
@@ -42,20 +42,20 @@ body, html {
   list-style-type: none;
   padding: 20px;
   margin: 0;
+  background-color: #f1f3f5; /* Cor de fundo da área de mensagens */
 }
 
 .chat-messages li {
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px; /* Bordas arredondadas */
   word-wrap: break-word;
-  max-width: 90%;
-  background-color: #f0f2f5; /* Cor de fundo das mensagens */
-  box-shadow: 0 2px 2px rgba(0,0,0,0.1); /* Sombra leve para separar as mensagens */
+  max-width: 80%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
 }
 
 .chat-messages .sent {
-  background-color: #d1e7dd; /* Cor de fundo para mensagens enviadas */
+  background-color: #d4edda; /* Cor de fundo para mensagens enviadas */
   text-align: right;
   align-self: flex-end;
   margin-left: auto;
@@ -71,10 +71,8 @@ body, html {
 /* Estilos para o formulário no chat */
 .chat-form {
   padding: 10px;
-  border-top: 1px solid #ddd;
-  background-color: #fff; /* Cor de fundo do formulário */
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top: 1px solid #dee2e6; /* Linha de separação suave */
+  background-color: #ffffff; /* Cor de fundo do formulário */
   display: flex;
   align-items: center;
 }
@@ -82,96 +80,24 @@ body, html {
 .chat-form input {
   flex-grow: 1;
   margin-right: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #ced4da; /* Borda suave */
+  border-radius: 20px; /* Bordas arredondadas */
   outline: none;
+  background-color: #e9ecef; /* Cor de fundo do input */
 }
 
 .chat-form button {
-  padding: 8px 16px;
-  background-color: #4CAF50; /* Cor de fundo para o botão */
+  padding: 10px 20px;
+  background-color: #007bff; /* Cor de fundo para o botão */
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 20px; /* Bordas arredondadas */
   cursor: pointer;
   outline: none;
+  transition: background-color 0.3s ease; /* Transição suave */
 }
 
 .chat-form button:hover {
-  background-color: #45a049; /* Cor de fundo do botão ao passar o mouse */
-}
-
-  /* Estilos gerais */
-body, html {
-  height: 100%;
-  margin: 0;
-}
-
-/* Estilo para o container do login */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Estilos para o container do chat */
-.chat-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Estilo para o card do chat */
-.chat-card {
-  width: 400px;
-  max-width: 100%;
-  height: 500px; /* Altura fixa para o chat */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Estilos para as mensagens no chat */
-.chat-messages {
-  flex-grow: 1;
-  overflow-y: auto;
-  list-style-type: none;
-  padding: 20px;
-  margin: 0;
-}
-
-.chat-messages li {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  word-wrap: break-word;
-  max-width: 90%;
-}
-
-.chat-messages .sent {
-  background-color: #d1e7dd;
-  text-align: right;
-  align-self: flex-end;
-}
-
-.chat-messages .received {
-  background-color: #f8d7da;
-  text-align: left;
-  align-self: flex-start;
-}
-
-/* Estilos para o formulário no chat */
-.chat-form {
-  padding: 10px;
-  border-top: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.chat-form input {
-  flex-grow: 1;
-  margin-right: 10px;
+  background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
 }
