@@ -1,18 +1,20 @@
-const apikey = "sk-proj-";  // chave de acesso da api do chatGPT;
-const socket = io();  // socket de comunicação do chat;
+const apikey = "sk-proj-";  // chave de acesso da api do chatGPT
+const socket = io();  // socket de comunicação do chat
 const form = document.getElementById("form");
 const input = document.getElementById("input");
 const chat = document.getElementById("chat");
 
 // Novo nome para o ChatGPT
-const assistantName = "Assistente";
+const assistantName = "Neuzinha";
 
 // Obter nome de usuário da URL
 const urlParams = new URLSearchParams(window.location.search);
 const username = urlParams.get("username");
 
+let displayName;
 if (username) {
-  socket.emit("setUsername", username);
+  displayName = username.split('@')[0];  // Extrai a parte antes do "@"
+  socket.emit("setUsername", displayName);
 } else {
   window.location.href = "index.html"; // Redireciona para a tela de login se o nome de usuário não estiver definido
 }
@@ -34,7 +36,7 @@ Object.keys(wordSoundMap).forEach((word) => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (input.value) {
-    const message = `${username}:${input.value}`;
+    const message = `${displayName}:${input.value}`;
     socket.emit("chatMessage", message);
     input.value = "";
 
@@ -44,7 +46,7 @@ form.addEventListener("submit", async (e) => {
 
 socket.on("userJoined", (username) => {
   const item = document.createElement("li");
-  item.textContent = `${username} entrou no chat`;
+  item.innerHTML = `<strong>${username}</strong> entrou no chat`;
   chat.appendChild(item);
   scrollToBottom();
 });
@@ -53,7 +55,7 @@ socket.on("chatMessage", async (msg) => {
   if (typeof msg === "string") {
     const [msgUsername, msgText] = msg.split(":");
     const item = document.createElement("li");
-    const isSentMessage = msgUsername === username;
+    const isSentMessage = msgUsername === displayName;
 
     item.classList.add(isSentMessage ? "sent" : "received");
     item.innerHTML = `<strong>${msgUsername}:</strong> ${msgText}`;
@@ -147,8 +149,7 @@ async function handleChatMessage(message, isUserMessage = false) {
   }
 }
 
-// api do cep;
-
+// api do cep
 async function fetchCepInfo(cep) {
   try {
     const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -174,7 +175,6 @@ async function fetchCepInfo(cep) {
   }
 }
 
-
 // chamando a api do chat gpt
 async function sendMessageToChatGPT(message) {
   try {
@@ -193,15 +193,11 @@ async function sendMessageToChatGPT(message) {
       })
     });
 
-
-  // Exibir msg resposta na tela; 
+    // Exibir msg resposta na tela
     const data = await response.json();
     if (data.choices && data.choices.length > 0) {
-
       let r = data.choices[0].message.content || data.choices[0].text;
-
       const item = document.createElement("li");
-
       item.innerHTML = `<strong>${assistantName}:</strong> ${r}`;
       chat.appendChild(item);
       scrollToBottom();
