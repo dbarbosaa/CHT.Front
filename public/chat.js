@@ -1,5 +1,5 @@
-const apikey = "";
-const socket = io();
+const apikey = "sk-proj-";  // chave de acesso da api do chatGPT;
+const socket = io();  // socket de comunicação do chat;
 const form = document.getElementById("form");
 const input = document.getElementById("input");
 const chat = document.getElementById("chat");
@@ -147,6 +147,8 @@ async function handleChatMessage(message, isUserMessage = false) {
   }
 }
 
+// api do cep;
+
 async function fetchCepInfo(cep) {
   try {
     const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -172,6 +174,8 @@ async function fetchCepInfo(cep) {
   }
 }
 
+
+// chamando a api do chat gpt
 async function sendMessageToChatGPT(message) {
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -188,10 +192,16 @@ async function sendMessageToChatGPT(message) {
         temperature: 0.5,
       })
     });
+
+
+  // Exibir msg resposta na tela; 
     const data = await response.json();
     if (data.choices && data.choices.length > 0) {
+
       let r = data.choices[0].message.content || data.choices[0].text;
+
       const item = document.createElement("li");
+
       item.innerHTML = `<strong>${assistantName}:</strong> ${r}`;
       chat.appendChild(item);
       scrollToBottom();
